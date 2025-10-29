@@ -172,11 +172,19 @@ export class AppService {
                 <h3>🚀 Production Ready</h3>
                 <p>Optimized for production deployment with proper error handling and validation.</p>
             </div>
+            <div class="feature-card">
+                <h3>🗄️ MongoDB Integration</h3>
+                <p>Seamless integration with MongoDB for reliable and scalable data persistence.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔄 RESTful API Design</h3>
+                <p>Follows REST principles with proper HTTP methods, status codes, and resource naming.</p>
+            </div>
         </div>
 
         <div class="docs-section">
             <h2>📚 API Documentation</h2>
-            <p>Explore the interactive API documentation to understand all available endpoints and test them directly.</p>
+            <p style="color: white;">Explore the interactive API documentation to understand all available endpoints and test them directly.</p>
             <div class="docs-links">
                 <a href="/api" class="doc-link">📋 Swagger UI Documentation</a>
                 <a href="/docs" class="doc-link secondary">🎨 Scalar API Reference</a>

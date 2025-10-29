@@ -1,12 +1,14 @@
 import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 import { AppModule } from './app.module';
 
 dotenv.config();
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
   // Swagger/OpenAPI configuration
   const config = new DocumentBuilder()
@@ -20,12 +22,18 @@ async function bootstrap() {
     .setContact('API Support', 'https://github.com', 'support@pokeapi.com')
     .setLicense('MIT', 'https://opensource.org/licenses/MIT')
     .addServer('http://localhost:3000', 'Development server')
-    .addServer('https://backend-test-lake-beta.vercel.app', 'Production server')
+    .addServer('https://pokeapi-seven-phi.vercel.app/', 'Production server')
     .addTag('Pokemon', 'All Pokémon management endpoints')
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   const openApiDocument = documentFactory();
+
+  // Serve Swagger UI static files in production (Vercel)
+  const swaggerPath = join(process.cwd(), 'node_modules', 'swagger-ui-dist');
+  app.useStaticAssets(swaggerPath, {
+    prefix: '/api-docs/',
+  });
 
   // Setup Swagger UI at /api
   SwaggerModule.setup('api', app, openApiDocument, {
@@ -34,12 +42,6 @@ async function bootstrap() {
       displayOperationId: true,
       filter: true,
       showRequestHeaders: true,
-      presets: [
-        {
-          name: 'preset_name',
-          components: {},
-        },
-      ],
     },
     customCss: `.swagger-ui .topbar { display: none }`,
     customSiteTitle: 'Pokémon API Documentation',
