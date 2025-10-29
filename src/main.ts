@@ -2,7 +2,6 @@ import * as dotenv from 'dotenv';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { apiReference } from '@scalar/nestjs-api-reference';
 
 dotenv.config();
 
@@ -26,9 +25,10 @@ async function bootstrap() {
     .build();
 
   const documentFactory = () => SwaggerModule.createDocument(app, config);
+  const openApiDocument = documentFactory();
 
   // Setup Swagger UI at /api
-  SwaggerModule.setup('api', app, documentFactory, {
+  SwaggerModule.setup('api', app, openApiDocument, {
     swaggerOptions: {
       persistAuthorization: true,
       displayOperationId: true,
@@ -45,18 +45,24 @@ async function bootstrap() {
     customSiteTitle: 'Pokémon API Documentation',
   });
 
-  // Setup Scalar API Reference at /docs
-  app.use(
-    '/docs',
-    apiReference({
-      content: documentFactory(),
-      pageTitle: 'Pokémon API - Scalar Reference',
-      metaData: {
-        title: 'Pokémon API Documentation',
-        description: 'Interactive API documentation for the Pokémon REST API',
-      },
-    }),
-  );
+  // Setup Scalar API Reference at /docs (dynamically imported for ESM compatibility)
+  if (process.env.ENABLE_SCALAR_DOCS !== 'false') {
+    try {
+      const { apiReference } = await import('@scalar/nestjs-api-reference');
+      const scalarReference = apiReference({
+        content: openApiDocument,
+        pageTitle: 'Pokémon API - Scalar Reference',
+        metaData: {
+          title: 'Pokémon API Documentation',
+          description: 'Interactive API documentation for the Pokémon REST API',
+        },
+      });
+
+      app.use('/docs', scalarReference);
+    } catch (error) {
+      console.warn('Scalar API Reference could not be initialized:', error);
+    }
+  }
 
   const port = process.env.PORT ?? 3000;
   await app.listen(port);

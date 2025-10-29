@@ -263,6 +263,15 @@ For MongoDB Atlas:
 3. Test MongoDB connection string
 4. Check for runtime errors in logs
 
+### Scalar API Reference (ERR_REQUIRE_ESM)
+
+**Error**: `Error [ERR_REQUIRE_ESM]: require() of ES Module ... @scalar/nestjs-api-reference`
+
+**Solutions**:
+1. The application now loads Scalar via dynamic `import()` to support Vercel's ESM environment. Ensure you are deploying the latest code.
+2. If you want to disable Scalar documentation in environments that do not need it, set `ENABLE_SCALAR_DOCS=false` in the deployment environment variables.
+3. After updating environment variables, redeploy the project from the Vercel dashboard.
+
 ### MongoDB Connection Timeout
 
 **Error**: "MongooseError: Cannot connect to MongoDB"
