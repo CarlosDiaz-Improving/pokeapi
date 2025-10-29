@@ -1,10 +1,10 @@
-# Testing de la API Pokémon
+# Testing the Pokémon API
 
-## Pruebas con cURL
+## Testing with cURL
 
-Asegúrate de que la aplicación esté corriendo en `http://localhost:3000`
+Make sure the application is running on `http://localhost:3000`
 
-### 1. Crear un Pokémon
+### 1. Create a Pokémon
 
 ```bash
 curl -X POST http://localhost:3000/pokemon \
@@ -21,7 +21,7 @@ curl -X POST http://localhost:3000/pokemon \
   }'
 ```
 
-Respuesta esperada:
+Expected response:
 ```json
 {
   "_id": "507f1f77bcf86cd799439011",
@@ -39,19 +39,19 @@ Respuesta esperada:
 }
 ```
 
-### 2. Obtener todos los Pokémon
+### 2. Get all Pokémon
 
 ```bash
 curl http://localhost:3000/pokemon
 ```
 
-### 3. Obtener un Pokémon específico
+### 3. Get a specific Pokémon
 
 ```bash
 curl http://localhost:3000/pokemon/507f1f77bcf86cd799439011
 ```
 
-### 4. Actualizar un Pokémon
+### 4. Update a Pokémon
 
 ```bash
 curl -X PATCH http://localhost:3000/pokemon/507f1f77bcf86cd799439011 \
@@ -62,19 +62,19 @@ curl -X PATCH http://localhost:3000/pokemon/507f1f77bcf86cd799439011 \
   }'
 ```
 
-### 5. Eliminar un Pokémon
+### 5. Delete a Pokémon
 
 ```bash
 curl -X DELETE http://localhost:3000/pokemon/507f1f77bcf86cd799439011
 ```
 
-## Pruebas con Postman
+## Testing with Postman
 
-1. Abre Postman
-2. Crea una nueva colección llamada "Pokémon API"
-3. Agrega las siguientes requests:
+1. Open Postman
+2. Create a new collection called "Pokémon API"
+3. Add the following requests:
 
-#### POST - Crear Pokémon
+#### POST - Create Pokémon
 - URL: `http://localhost:3000/pokemon`
 - Method: POST
 - Body (raw JSON):
@@ -91,15 +91,15 @@ curl -X DELETE http://localhost:3000/pokemon/507f1f77bcf86cd799439011
 }
 ```
 
-#### GET - Obtener todos
+#### GET - Get all
 - URL: `http://localhost:3000/pokemon`
 - Method: GET
 
-#### GET - Obtener por ID
+#### GET - Get by ID
 - URL: `http://localhost:3000/pokemon/{{pokemon_id}}`
 - Method: GET
 
-#### PATCH - Actualizar
+#### PATCH - Update
 - URL: `http://localhost:3000/pokemon/{{pokemon_id}}`
 - Method: PATCH
 - Body (raw JSON):
@@ -110,13 +110,13 @@ curl -X DELETE http://localhost:3000/pokemon/507f1f77bcf86cd799439011
 }
 ```
 
-#### DELETE - Eliminar
+#### DELETE - Delete
 - URL: `http://localhost:3000/pokemon/{{pokemon_id}}`
 - Method: DELETE
 
-## Pokémon de Ejemplo
+## Sample Pokémon
 
-Aquí hay algunos Pokémon que puedes usar para probar:
+Here are some Pokémon you can use for testing:
 
 ### Pikachu
 ```json
@@ -188,21 +188,21 @@ Aquí hay algunos Pokémon que puedes usar para probar:
 }
 ```
 
-## Códigos de Respuesta HTTP
+## HTTP Response Codes
 
-- `201 Created`: Pokémon creado exitosamente
-- `200 OK`: Operación exitosa (GET, PATCH, DELETE)
-- `400 Bad Request`: Datos inválidos o incompletos
-- `404 Not Found`: Pokémon no encontrado
-- `500 Internal Server Error`: Error del servidor
+- `201 Created`: Pokémon created successfully
+- `200 OK`: Successful operation (GET, PATCH, DELETE)
+- `400 Bad Request`: Invalid or incomplete data
+- `404 Not Found`: Pokémon not found
+- `500 Internal Server Error`: Server error
 
-## Verificar la Conexión a MongoDB
+## Verify MongoDB Connection
 
-Si tienes problemas de conexión a MongoDB, verifica:
+If you have MongoDB connection issues, verify:
 
-1. La variable `MONGODB_URI` en tu archivo `.env`
-2. Que MongoDB esté corriendo (si es local)
-3. Que las credenciales sean correctas (si es MongoDB Atlas)
-4. Que tu IP esté en la whitelist de MongoDB Atlas (si es cloud)
+1. The `MONGODB_URI` variable in your `.env` file
+2. That MongoDB is running (if local)
+3. That credentials are correct (if MongoDB Atlas)
+4. That your IP is in the MongoDB Atlas whitelist (if cloud)
 
-Revisa los logs de la aplicación para más detalles sobre el error.
+Check application logs for more details about the error.

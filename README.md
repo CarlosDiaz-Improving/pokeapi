@@ -1,98 +1,174 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Pokémon API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive REST API for managing Pokémon data built with **NestJS** and **MongoDB**. The API provides full CRUD (Create, Read, Update, Delete) operations with interactive API documentation.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Quick Start
 
-## Description
+### Prerequisites
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **Node.js** 18+
+- **npm** or **yarn**
+- **MongoDB** (local or [MongoDB Atlas](https://www.mongodb.com/cloud/atlas))
 
-## Project setup
+### Installation & Running
 
 ```bash
-$ npm install
+# Install dependencies
+npm install
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your MongoDB URI
+
+# Start development server
+npm run start:dev
 ```
 
-## Compile and run the project
+The API will be available at `http://localhost:3000`
+
+## 📚 Documentation
+
+Complete documentation is organized in the `docs/` folder:
+
+| Document | Purpose |
+|----------|---------|
+| **[docs/README.md](./docs/README.md)** | Documentation index and overview |
+| **[docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md)** | Installation, configuration, and setup |
+| **[docs/API/README.md](./docs/API/README.md)** | API overview and reference |
+| **[docs/API/ENDPOINTS.md](./docs/API/ENDPOINTS.md)** | Detailed endpoint specifications |
+| **[docs/API/EXAMPLES.md](./docs/API/EXAMPLES.md)** | Code examples (cURL, JavaScript, Python, Postman) |
+| **[docs/GUIDES/TESTING.md](./docs/GUIDES/TESTING.md)** | Testing instructions and examples |
+| **[docs/GUIDES/DEPLOYMENT.md](./docs/GUIDES/DEPLOYMENT.md)** | Deployment to production (Vercel) |
+| **[docs/ARCHITECTURE/PROJECT_STRUCTURE.md](./docs/ARCHITECTURE/PROJECT_STRUCTURE.md)** | Project structure and architecture |
+
+## 🎯 Quick Links
+
+- **API Documentation**: [Swagger UI](http://localhost:3000/api) | [Scalar Reference](http://localhost:3000/reference)
+- **Base URL**: `http://localhost:3000/pokemon`
+
+## 📋 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/pokemon` | Create a new Pokémon |
+| GET | `/pokemon` | Get all Pokémon |
+| GET | `/pokemon/:id` | Get a specific Pokémon |
+| PATCH | `/pokemon/:id` | Update a Pokémon |
+| DELETE | `/pokemon/:id` | Delete a Pokémon |
+
+See [docs/API/ENDPOINTS.md](./docs/API/ENDPOINTS.md) for detailed specifications.
+
+## 💻 Quick Example
+
+### Create a Pokémon
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+curl -X POST http://localhost:3000/pokemon \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Pikachu",
+    "type": "Electric",
+    "hp": 35,
+    "attack": 55,
+    "defense": 40,
+    "spAtk": 50,
+    "spDef": 50,
+    "speed": 90
+  }'
 ```
 
-## Run tests
+See [docs/API/EXAMPLES.md](./docs/API/EXAMPLES.md) for more examples in JavaScript, Python, and Postman.
+
+## 🏗️ Project Structure
+
+```
+pokeapi/
+├── docs/                    # Complete documentation
+│   ├── README.md
+│   ├── GETTING_STARTED.md
+│   ├── API/
+│   ├── GUIDES/
+│   └── ARCHITECTURE/
+├── src/                     # Source code
+│   ├── pokemon/            # Pokemon module
+│   ├── app.module.ts
+│   └── main.ts
+├── test/                   # Tests
+├── .env.example            # Environment template
+├── package.json
+└── README.md              # This file
+```
+
+See [docs/ARCHITECTURE/PROJECT_STRUCTURE.md](./docs/ARCHITECTURE/PROJECT_STRUCTURE.md) for detailed structure explanation.
+
+## 🧪 Testing
 
 ```bash
-# unit tests
-$ npm run test
+# Unit tests
+npm run test
 
-# e2e tests
-$ npm run test:e2e
+# E2E tests
+npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+# Test coverage
+npm run test:cov
 ```
 
-## Deployment
+See [docs/GUIDES/TESTING.md](./docs/GUIDES/TESTING.md) for detailed testing instructions.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## 🚢 Deployment
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+# Build for production
+npm run build
+
+# Run production build
+npm run start:prod
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+See [docs/GUIDES/DEPLOYMENT.md](./docs/GUIDES/DEPLOYMENT.md) for Vercel deployment instructions.
 
-## Resources
+## 📊 Pokémon Model
 
-Check out a few resources that may come in handy when working with NestJS:
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `_id` | String | Auto | MongoDB unique identifier |
+| `name` | String | Yes | Pokémon name |
+| `type` | String | Yes | Pokémon type |
+| `hp` | Number | Yes | Hit points |
+| `attack` | Number | Yes | Attack power |
+| `defense` | Number | Yes | Defense power |
+| `spAtk` | Number | Yes | Special attack |
+| `spDef` | Number | Yes | Special defense |
+| `speed` | Number | Yes | Speed stat |
+| `createdAt` | Date | Auto | Creation timestamp |
+| `updatedAt` | Date | Auto | Update timestamp |
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+## ⚙️ Available Commands
 
-## Support
+```bash
+npm run start          # Start application
+npm run start:dev      # Start with hot-reload
+npm run start:prod     # Start production build
+npm run build          # Build for production
+npm run test           # Run unit tests
+npm run test:e2e       # Run E2E tests
+npm run test:cov       # Run tests with coverage
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## 🆘 Troubleshooting
 
-## Stay in touch
+- **MongoDB Connection Issues**: See [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md#troubleshooting)
+- **Port Already in Use**: See [docs/GETTING_STARTED.md](./docs/GETTING_STARTED.md#port-already-in-use)
+- **Testing Issues**: See [docs/GUIDES/TESTING.md](./docs/GUIDES/TESTING.md#troubleshooting)
+- **Deployment Issues**: See [docs/GUIDES/DEPLOYMENT.md](./docs/GUIDES/DEPLOYMENT.md#troubleshooting)
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## 📖 Learn More
 
-## License
+- [NestJS Documentation](https://docs.nestjs.com)
+- [MongoDB Documentation](https://docs.mongodb.com)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs)
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 📄 License
+
+MIT License - See LICENSE file for details

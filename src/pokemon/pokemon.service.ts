@@ -7,7 +7,9 @@ import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 
 @Injectable()
 export class PokemonService {
-  constructor(@InjectModel(Pokemon.name) private pokemonModel: Model<Pokemon>) {}
+  constructor(
+    @InjectModel(Pokemon.name) private pokemonModel: Model<Pokemon>,
+  ) {}
 
   async create(createPokemonDto: CreatePokemonDto): Promise<Pokemon> {
     const createdPokemon = new this.pokemonModel(createPokemonDto);

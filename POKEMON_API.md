@@ -1,48 +1,48 @@
 # Pokémon API - NestJS + MongoDB
 
-API simple de CRUD para Pokémon usando NestJS y MongoDB.
+Simple CRUD API for Pokémon using NestJS and MongoDB.
 
-## Instalación
+## Installation
 
-Las dependencias ya están configuradas en `package.json`. Solo necesitas instalar:
+Dependencies are already configured in `package.json`. You just need to install them:
 
 ```bash
 npm install
 ```
 
-## Configuración
+## Configuration
 
-1. Copia el archivo `.env.example` a `.env`:
+1. Copy the `.env.example` file to `.env`:
 ```bash
 cp .env.example .env
 ```
 
-2. Actualiza la variable `MONGODB_URI` con tu conexión a MongoDB:
+2. Update the `MONGODB_URI` variable with your MongoDB connection:
 ```
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/pokemon?retryWrites=true&w=majority
 ```
 
-## Ejecutar la aplicación
+## Run the application
 
-### Desarrollo
+### Development
 ```bash
 npm run start:dev
 ```
 
-### Producción
+### Production
 ```bash
 npm run build
 npm run start:prod
 ```
 
-## Endpoints de la API
+## API Endpoints
 
 ### Base URL
 ```
 http://localhost:3000/pokemon
 ```
 
-### 1. Crear un Pokémon (POST)
+### 1. Create a Pokémon (POST)
 ```bash
 POST /pokemon
 Content-Type: application/json
@@ -59,17 +59,17 @@ Content-Type: application/json
 }
 ```
 
-### 2. Obtener todos los Pokémon (GET)
+### 2. Get all Pokémon (GET)
 ```bash
 GET /pokemon
 ```
 
-### 3. Obtener un Pokémon por ID (GET)
+### 3. Get a Pokémon by ID (GET)
 ```bash
 GET /pokemon/:id
 ```
 
-### 4. Actualizar un Pokémon (PATCH)
+### 4. Update a Pokémon (PATCH)
 ```bash
 PATCH /pokemon/:id
 Content-Type: application/json
@@ -80,12 +80,12 @@ Content-Type: application/json
 }
 ```
 
-### 5. Eliminar un Pokémon (DELETE)
+### 5. Delete a Pokémon (DELETE)
 ```bash
 DELETE /pokemon/:id
 ```
 
-## Estructura del Proyecto
+## Project Structure
 
 ```
 src/
@@ -103,20 +103,20 @@ src/
 └── main.ts
 ```
 
-## Propiedades del Pokémon
+## Pokémon Properties
 
-- `name` (string, requerido): Nombre del Pokémon
-- `type` (string, requerido): Tipo de Pokémon (Electric, Fire, Water, etc.)
-- `hp` (number, requerido): Puntos de vida
-- `attack` (number, requerido): Ataque
-- `defense` (number, requerido): Defensa
-- `spAtk` (number, requerido): Ataque especial
-- `spDef` (number, requerido): Defensa especial
-- `speed` (number, requerido): Velocidad
-- `createdAt` (Date): Fecha de creación (automática)
-- `updatedAt` (Date): Fecha de actualización (automática)
+- `name` (string, required): Pokémon name
+- `type` (string, required): Pokémon type (Electric, Fire, Water, etc.)
+- `hp` (number, required): Hit points
+- `attack` (number, required): Attack
+- `defense` (number, required): Defense
+- `spAtk` (number, required): Special attack
+- `spDef` (number, required): Special defense
+- `speed` (number, required): Speed
+- `createdAt` (Date): Creation date (automatic)
+- `updatedAt` (Date): Update date (automatic)
 
-## Ejemplo de Pokémon Completo
+## Complete Pokémon Example
 
 ```json
 {
@@ -134,17 +134,17 @@ src/
 }
 ```
 
-## Despliegue en Vercel
+## Deployment on Vercel
 
-1. Asegúrate de que el archivo `.env` esté en `.gitignore` (ya está configurado)
-2. Agrega las variables de entorno en el panel de Vercel:
-   - `MONGODB_URI`: Tu conexión a MongoDB
-   - `PORT`: 3000 (opcional, Vercel lo asigna automáticamente)
-3. Despliega normalmente con `git push`
+1. Make sure the `.env` file is in `.gitignore` (already configured)
+2. Add environment variables in the Vercel panel:
+   - `MONGODB_URI`: Your MongoDB connection
+   - `PORT`: 3000 (optional, Vercel assigns it automatically)
+3. Deploy normally with `git push`
 
-## Notas
+## Notes
 
-- La API usa Mongoose para la conexión a MongoDB
-- Todos los campos del Pokémon son requeridos al crear
-- Los campos se pueden actualizar parcialmente con PATCH
-- Las fechas `createdAt` y `updatedAt` se generan automáticamente
+- The API uses Mongoose for MongoDB connection
+- All Pokémon fields are required when creating
+- Fields can be updated partially with PATCH
+- `createdAt` and `updatedAt` dates are generated automatically

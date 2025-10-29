@@ -1,9 +1,9 @@
 ### Pokémon API - Testing Endpoints
 ### Base URL
 @baseUrl = http://localhost:3000
-@pokemonId = 6901ad5a893e55a4b5d0ed79
+@pokemonId = XXXX
 
-### 1. Crear un Pokémon - Pikachu
+### 1. Create a Pokémon - Pikachu
 POST {{baseUrl}}/pokemon
 Content-Type: application/json
 
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-### 2. Crear un Pokémon - Charizard
+### 2. Create a Pokémon - Charizard
 POST {{baseUrl}}/pokemon
 Content-Type: application/json
 
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 ###
 
-### 3. Crear un Pokémon - Blastoise
+### 3. Create a Pokémon - Blastoise
 POST {{baseUrl}}/pokemon
 Content-Type: application/json
 
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ###
 
-### 4. Crear un Pokémon - Venusaur
+### 4. Create a Pokémon - Venusaur
 POST {{baseUrl}}/pokemon
 Content-Type: application/json
 
@@ -71,7 +71,7 @@ Content-Type: application/json
 
 ###
 
-### 5. Crear un Pokémon - Dragonite
+### 5. Create a Pokémon - Dragonite
 POST {{baseUrl}}/pokemon
 Content-Type: application/json
 
@@ -88,19 +88,19 @@ Content-Type: application/json
 
 ###
 
-### 6. Obtener todos los Pokémon
+### 6. Get all Pokémon
 GET {{baseUrl}}/pokemon
 
 ###
 
-### 7. Obtener un Pokémon por ID
-### Reemplaza el ID con uno real de la respuesta anterior
+### 7. Get a Pokémon by ID
+### Replace the ID with a real one from the previous response
 GET {{baseUrl}}/pokemon/{{pokemonId}}
 
 ###
 
-### 8. Actualizar un Pokémon - Aumentar HP y Attack
-### Reemplaza el ID con uno real
+### 8. Update a Pokémon - Increase HP and Attack
+### Replace the ID with a real one
 PATCH {{baseUrl}}/pokemon/{{pokemonId}}
 Content-Type: application/json
 
@@ -111,8 +111,8 @@ Content-Type: application/json
 
 ###
 
-### 9. Actualizar un Pokémon - Cambiar tipo
-### Reemplaza el ID con uno real
+### 9. Update a Pokémon - Change type
+### Replace the ID with a real one
 PATCH {{baseUrl}}/pokemon/{{pokemonId}}
 Content-Type: application/json
 
@@ -122,8 +122,8 @@ Content-Type: application/json
 
 ###
 
-### 10. Actualizar todos los stats de un Pokémon
-### Reemplaza el ID con uno real
+### 10. Update all stats of a Pokémon
+### Replace the ID with a real one
 PATCH {{baseUrl}}/pokemon/{{pokemonId}}
 Content-Type: application/json
 
@@ -138,8 +138,8 @@ Content-Type: application/json
 
 ###
 
-### 11. Eliminar un Pokémon
-### Reemplaza el ID con uno real
+### 11. Delete a Pokémon
+### Replace the ID with a real one
 DELETE {{baseUrl}}/pokemon/{{pokemonId}}
 
 ###

@@ -10,8 +10,7 @@ import { PokemonModule } from './pokemon/pokemon.module';
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
       useFactory: () => ({
-        uri:
-          process.env.MONGODB_URI ?? 'mongodb://localhost:27017/pokemons',
+        uri: process.env.MONGODB_URI ?? 'mongodb://localhost:27017/pokemons',
       }),
     }),
     PokemonModule,
